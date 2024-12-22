@@ -9,7 +9,7 @@ from langchain.schema import HumanMessage, SystemMessage
 # FastAPI에서 데이터를 가져오는 함수
 def fetch_sensor_data():
     try:
-        response = requests.get("http://113.198.63.27:30150/sensor")
+        response = requests.get("http://113.198.63.27:10150/sensor")
         response.raise_for_status()  # HTTP 오류 발생 시 예외 처리
         return response.json()  # JSON 데이터를 반환
     except requests.RequestException as e:
@@ -101,7 +101,7 @@ def main():
             st.warning("센서 데이터를 가져오는 데 실패했습니다.")
 
     elif menu == "음성대화 로그 보기":
-        API_URL = "http://113.198.63.27:30150/log"
+        API_URL = "http://113.198.63.27:10150/log"
 
         # 페이지 제목
         st.title("음성대화 로그 뷰어")
@@ -159,12 +159,12 @@ def main():
 
     elif menu == "챗봇":
         st.title("Agricultural Chat Assistant")
-        OPENAI_API_KEY = "sk-proj-RCU_sgtKq9GwFRQRBB3q4UJdyBwRVUMJ3xsfXT3BlbkFJwJePmkB2T6Ywbss4ct6a8o3izjKSdA34-ON5HZwnBGRhRWiSM7M2ioN6tdvbMA5NLHI_qlTR0A"
+        OPENAI_API_KEY = "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"
         chat_model = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-4o", temperature=0.8)
 
         # 시스템 프롬프트 설정
         system_prompt = """
-         The following is a friendly and professional conversation between a human and an AI.
+         Your name is 'Famia'. The following is a friendly and professional conversation between a human and an AI.
          The AI is an expert agricultural assistant with years of experience in smart farming, crop management, and agricultural technology.
          The AI is talking to a user who needs help with agriculture-related questions or tasks.
          The AI provides clear and practical advice, focusing on smart agriculture solutions, crop health, pest management, and data-driven decision-making.
