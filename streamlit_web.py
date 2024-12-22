@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 from openai import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
+from streamlit_autorefresh import st_autorefresh
 
 # FastAPI에서 데이터를 가져오는 함수
 def fetch_sensor_data():
@@ -67,10 +68,13 @@ def main():
     menu = st.sidebar.selectbox("메뉴 선택", ["홈", "음성대화 로그 보기", "챗봇"])
     # 현재 시간 표시
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    st.sidebar.write(f"현재 시간: {current_time}")
 
     if menu == "홈":
+        # 1초마다 새로고침 (1000ms = 1초)
+        st_autorefresh(interval=1000, key="home_page_refresh")
+
         st.write("### 온도 및 습도 데이터 확인")
+
         # FastAPI에서 데이터 가져오기
         sensor_data = fetch_sensor_data()
 
@@ -88,7 +92,8 @@ def main():
 
             with col2:
                 st.metric(label="습도 (%)", value=humidity)
-            st.write(f"업데이트 시간: {update_time}")
+            st.write(f"데이터 업데이트 시간: {update_time}")
+            st.write(f"현재 시간: {current_time}")
 
             history = sensor_data.get("history", [])
 
@@ -99,6 +104,7 @@ def main():
 
         else:
             st.warning("센서 데이터를 가져오는 데 실패했습니다.")
+
 
     elif menu == "음성대화 로그 보기":
         API_URL = "http://113.198.63.27:10150/log"
@@ -159,7 +165,7 @@ def main():
 
     elif menu == "챗봇":
         st.title("Agricultural Chat Assistant")
-        OPENAI_API_KEY = "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"
+        OPENAI_API_KEY = "OdvbMA5NLHI_qlTR0A"
         chat_model = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-4o", temperature=0.8)
 
         # 시스템 프롬프트 설정
