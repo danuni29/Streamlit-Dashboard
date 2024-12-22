@@ -159,7 +159,7 @@ def main():
 
     elif menu == "챗봇":
         st.title("Agricultural Chat Assistant")
-        OPENAI_API_KEY = "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"
+        OPENAI_API_KEY = "sk-proj-RCU_sgtKq9GwFRQRBB3q4UJdyBwRVUMJ3xsfXT3BlbkFJwJePmkB2T6Ywbss4ct6a8o3izjKSdA34-ON5HZwnBGRhRWiSM7M2ioN6tdvbMA5NLHI_qlTR0A"
         chat_model = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-4o", temperature=0.8)
 
         # 시스템 프롬프트 설정
