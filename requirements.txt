@@ -8,8 +8,5 @@ setuptools>=65.5.0
 wheel>=0.40.0
 pillow==9.4.0
 build
-langchain>=0.0.299
-openai>=0.28.0
 python-dotenv>=1.0.0
-tiktoken>=0.5.0
 langchain-community
