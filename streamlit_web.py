@@ -166,10 +166,7 @@ def main():
     elif menu == "챗봇":
         st.title("Agricultural Chat Assistant")
         OPENAI_API_KEY = st.secrets["openai"]["api_key"]
-
-        st.write(OPENAI_API_KEY)
-        st.write(st.secrets["openai"])
-        st.write(st.secrets["openai"]["api_key"])         
+      
         chat_model = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-4o", temperature=0.8)
 
         # 시스템 프롬프트 설정
