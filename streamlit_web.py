@@ -166,7 +166,7 @@ def main():
     elif menu == "챗봇":
         st.title("Agricultural Chat Assistant")
         OPENAI_API_KEY = st.secrets["openai"]["api_key"]
-        assert openai.api_key is not None, "API Key is missing!"
+
         st.write(OPENAI_API_KEY)
         chat_model = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-4o", temperature=0.8)
 
