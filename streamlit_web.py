@@ -6,6 +6,7 @@ from openai import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from streamlit_autorefresh import st_autorefresh
+from datetime import datetime, timedelta
 
 # FastAPI에서 데이터를 가져오는 함수
 def fetch_sensor_data():
