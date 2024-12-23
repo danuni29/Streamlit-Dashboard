@@ -9,16 +9,18 @@ from streamlit_autorefresh import st_autorefresh
 from datetime import datetime, timedelta
 
 # FastAPI에서 데이터를 가져오는 함수
+from datetime import datetime, timedelta  # timedelta를 이미 가져와야 합니다
+
 def fetch_sensor_data():
-    """고정된 센서 데이터를 반환"""
+    """2분 간격으로 고정된 센서 데이터를 반환"""
     try:
         # 현재 시간
         now = datetime.now()
 
-        # 고정된 데이터 생성
+        # 고정된 데이터 생성 (2분 간격)
         history = [
             {
-                "timestamp": (now - timedelta(seconds=i * 2)).strftime("%Y-%m-%d %H:%M:%S"),
+                "timestamp": (now - timedelta(minutes=i * 2)).strftime("%Y-%m-%d %H:%M:%S"),
                 "temperature": 21,  # 고정 온도
                 "humidity": 29      # 고정 습도
             }
