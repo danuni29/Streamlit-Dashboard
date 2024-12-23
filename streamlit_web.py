@@ -9,13 +9,34 @@ from streamlit_autorefresh import st_autorefresh
 
 # FastAPI에서 데이터를 가져오는 함수
 def fetch_sensor_data():
+    """고정된 센서 데이터를 반환"""
     try:
-        response = requests.get("http://113.198.63.27:10150/sensor")
-        response.raise_for_status()  # HTTP 오류 발생 시 예외 처리
-        return response.json()  # JSON 데이터를 반환
-    except requests.RequestException as e:
-        st.error(f"Error fetching data: {e}")
+        # 현재 시간
+        now = datetime.now()
+
+        # 고정된 데이터 생성
+        history = [
+            {
+                "timestamp": (now - timedelta(seconds=i * 2)).strftime("%Y-%m-%d %H:%M:%S"),
+                "temperature": 21,  # 고정 온도
+                "humidity": 29      # 고정 습도
+            }
+            for i in range(10)  # 10개의 데이터 생성
+        ]
+
+        # 최신 데이터 설정
+        latest = history[0]
+
+        # 고정된 센서 데이터 반환
+        return {
+            "latest": latest,
+            "history": history
+        }
+
+    except Exception as e:
+        st.error(f"Error generating mock data: {e}")
         return None
+
 
 # 그래프 생성 함수
 def generate_graph(history):
