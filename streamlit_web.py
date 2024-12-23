@@ -92,7 +92,7 @@ def main():
 
             with col2:
                 st.metric(label="습도 (%)", value=humidity)
-            st.write(f"데이터 업데이트 시간: {update_time}")
+            # st.write(f"데이터 업데이트 시간: {update_time}")
             st.write(f"현재 시간: {current_time}")
 
             history = sensor_data.get("history", [])
